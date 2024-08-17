@@ -1,12 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://d15sjv8kllv23"]
+[gd_scene load_steps=5 format=3 uid="uid://d15sjv8kllv23"]
 
 [ext_resource type="Texture2D" uid="uid://c7jatj25541pu" path="res://Sprites/UI-SliderPanel.png" id="1_o1in3"]
 [ext_resource type="Texture2D" uid="uid://b248vwcp8qom7" path="res://Sprites/UI_Paddle.png" id="2_ejrvc"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_82d60"]
+resource_local_to_scene = true
+texture = ExtResource("1_o1in3")
+texture_margin_left = 10.0
+texture_margin_top = 20.0
+texture_margin_right = 10.0
+texture_margin_bottom = 20.0
+expand_margin_left = 15.0
+expand_margin_right = 15.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_65nbi"]
+
 [node name="UI_Slider" type="Node2D"]
 
 [node name="Ui-sliderPanel" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("1_o1in3")
 
 [node name="UiPaddle" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_ejrvc")
+
+[node name="HSlider" type="HSlider" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -40.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+tooltip_text = "go ahead
+see what happens"
+mouse_default_cursor_shape = 2
+theme_override_icons/grabber = ExtResource("2_ejrvc")
+theme_override_styles/slider = SubResource("StyleBoxTexture_82d60")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_65nbi")
+value = 50.0
+tick_count = 20
