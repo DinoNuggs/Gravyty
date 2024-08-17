@@ -18,10 +18,22 @@ public partial class Frank : CharacterBody2D
 	public float MaxFloorSpeed = 1;
 	[Export]
 	public float Acceleration = 1;
+	[Export]
+	public float ScalingRate = 1;
 
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
+
+		if (Input.IsActionJustReleased("scale_up")) {
+			GD.Print("Scaling up");
+			Scale += new Vector2(1, 1) * ScalingRate;
+		}
+
+		if (Input.IsActionJustReleased("scale_down")) {
+			GD.Print("Scaling up");
+			Scale += new Vector2(-1, -1) * ScalingRate;
+		}
 
 		if (Input.IsActionPressed("ui_accept"))
 		{
@@ -42,11 +54,10 @@ public partial class Frank : CharacterBody2D
 
 		// Get the input direction and handle the movement/deceleration.
 		// As good practice, you should replace UI actions with custom gameplay actions.
-		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+		Vector2 direction = Input.GetVector("move_left", "move_right", "ui_up", "ui_down");
 
 		// Grounded
-		if (IsOnFloor())
-		{
+		if (IsOnFloor()) {
 			if (direction != Vector2.Zero)
 			{
 				velocity.X = Mathf.MoveToward(Velocity.X, direction.X * Speed, Acceleration);
@@ -62,8 +73,7 @@ public partial class Frank : CharacterBody2D
 				GD.Print("cappin");
 				velocity.X = Mathf.MoveToward(Velocity.X, MaxFloorSpeed * direction.X, Speed);
 			}
-		} else 
-		{
+		} else {
 			// In air, should be more harder to change direction
 			if (direction != Vector2.Zero)
 			{
@@ -82,7 +92,7 @@ public partial class Frank : CharacterBody2D
 			}
 		}
 		
-		
+
 		Velocity = velocity;
 		MoveAndSlide();
 	}

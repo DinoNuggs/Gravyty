@@ -13,6 +13,7 @@ AirInertia = 20.0
 AirMobility = 70.0
 MaxFloorSpeed = 300.0
 Acceleration = 35.0
+ScalingRate = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 1.5)
@@ -20,3 +21,5 @@ shape = SubResource("RectangleShape2D_t4wbw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_o7yx6")
+
+[node name="Camera2D" type="Camera2D" parent="."]
