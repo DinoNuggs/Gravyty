@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dabdctxp7rp6q"
-path="res://.godot/imported/Boogers-sheet-sheet.png-8320205975de501a25aca86b0c2a4f1b.ctex"
+uid="uid://2qns7h57ws12"
+path="res://.godot/imported/truck.png-fa2b8b2d0dc4ae9e3c434b1adf91fc3e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Boogers-sheet-sheet.png"
-dest_files=["res://.godot/imported/Boogers-sheet-sheet.png-8320205975de501a25aca86b0c2a4f1b.ctex"]
+source_file="res://Sprites/truck.png"
+dest_files=["res://.godot/imported/truck.png-fa2b8b2d0dc4ae9e3c434b1adf91fc3e.ctex"]
 
 [params]
 

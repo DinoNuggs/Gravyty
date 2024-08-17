@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvcm4xbbhbgty"
-path="res://.godot/imported/Boogers-sheet.png-1e633101f5fffec4c2c313bee93b8a86.ctex"
+uid="uid://dmomat681kb0f"
+path="res://.godot/imported/frank.png-aac0653d661ed53c2794438e7947f3b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Boogers-sheet.png"
-dest_files=["res://.godot/imported/Boogers-sheet.png-1e633101f5fffec4c2c313bee93b8a86.ctex"]
+source_file="res://Sprites/frank.png"
+dest_files=["res://.godot/imported/frank.png-aac0653d661ed53c2794438e7947f3b5.ctex"]
 
 [params]
 

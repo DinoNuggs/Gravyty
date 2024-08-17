@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://k6r535jvwloa"
-path="res://.godot/imported/Boogers.png-e25dcaf530f8e70601d903fb211bdd96.ctex"
+uid="uid://dabdctxp7rp6q"
+path="res://.godot/imported/Boogers-sheet-sheet.png-fb1817b05e2cb6fefa5010e8e0258b14.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Boogers.png"
-dest_files=["res://.godot/imported/Boogers.png-e25dcaf530f8e70601d903fb211bdd96.ctex"]
+source_file="res://Sprites/Boogers-sheet-sheet.png"
+dest_files=["res://.godot/imported/Boogers-sheet-sheet.png-fb1817b05e2cb6fefa5010e8e0258b14.ctex"]
 
 [params]
 
