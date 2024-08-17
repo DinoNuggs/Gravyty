@@ -39,8 +39,10 @@ public partial class Frank : CharacterBody2D
 	}
 	public override void _PhysicsProcess(double delta)
 	{
+		// GD.Print("Current Weight: " + weight);
 		Vector2 velocity = Velocity;
 		float scaleModifier = Scale.Length()/1.4142135f;
+		weight = Scale.Length()*Scale.Length() * mass;
 		
 		targetScale = Math.Clamp(targetScale, mininumScale, maximumScale);
 

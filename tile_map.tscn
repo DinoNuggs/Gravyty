@@ -51,7 +51,7 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="Truck" parent="." instance=ExtResource("3_fqi43")]
-position = Vector2(317, 407)
+position = Vector2(398, 342)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -65,4 +65,8 @@ position = Vector2(111, 415)
 ScalingRate = 5.0
 
 [node name="PressurePlate" parent="." instance=ExtResource("5_il14y")]
-position = Vector2(166, 447)
+position = Vector2(169, 446)
+
+[node name="HeavyPlate" parent="." instance=ExtResource("5_il14y")]
+position = Vector2(277, 446)
+weightThreshold = 10.0
