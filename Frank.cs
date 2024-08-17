@@ -55,7 +55,7 @@ public partial class Frank : CharacterBody2D
 		// Add the gravity.
 		if (!IsOnFloor())
 		{
-			velocity += GetGravity() * (float)delta;
+			velocity += GetGravity() * scaleModifier * (float)delta;
 		}
 
 		// Get the input direction and handle the movement/deceleration.
