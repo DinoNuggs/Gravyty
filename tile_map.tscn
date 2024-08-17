@@ -52,7 +52,7 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="Truck" parent="." instance=ExtResource("3_fqi43")]
-position = Vector2(398, 342)
+position = Vector2(650, 172)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -70,11 +70,10 @@ position = Vector2(169, 446)
 
 [node name="HeavyPlate" parent="." instance=ExtResource("5_il14y")]
 position = Vector2(277, 446)
-
 weightThreshold = 10.0
 
 [node name="Door" parent="." instance=ExtResource("6_4wxtq")]
-position = Vector2(523, 372)
+position = Vector2(396, 372)
 
 [connection signal="ButtonPressed" from="PressurePlate" to="Door" method="OnOpenSignal"]
 [connection signal="ButtonPressed" from="HeavyPlate" to="Door" method="OnOpenSignal"]
