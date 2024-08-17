@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://hvdn7a68i0x"]
+
+[ext_resource type="Texture2D" uid="uid://c7jatj25541pu" path="res://Sprites/UI-SliderPanel.png" id="1_o1in3"]
+[ext_resource type="Texture2D" uid="uid://b248vwcp8qom7" path="res://Sprites/UI_Paddle.png" id="2_ejrvc"]
+
+[node name="UI_Slider" type="Node2D"]
+
+[node name="Ui-sliderPanel" type="Sprite2D" parent="."]
+texture = ExtResource("1_o1in3")
+
+[node name="UiPaddle" type="Sprite2D" parent="."]
+texture = ExtResource("2_ejrvc")
