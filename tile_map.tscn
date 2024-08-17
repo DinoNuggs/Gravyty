@@ -69,4 +69,3 @@ position = Vector2(169, 446)
 
 [node name="HeavyPlate" parent="." instance=ExtResource("5_il14y")]
 position = Vector2(277, 446)
-weightThreshold = 10.0
