@@ -20,6 +20,8 @@ public partial class Frank : CharacterBody2D
 	public float Acceleration = 1;
 	[Export]
 	public float ScalingRate = 1;
+	[Export] public float mininumScale = 0.1f;
+	[Export] public float maximumScale = 10f;
 
 	private CollisionObject2D headClearanceBox;
 	private RayCast2D headClearanceRay;
@@ -36,9 +38,11 @@ public partial class Frank : CharacterBody2D
 	{
 		Vector2 velocity = Velocity;
 		float scaleModifier = Scale.Length()/1.4142135f;
+		
+		targetScale = Math.Clamp(targetScale, mininumScale, maximumScale);
+		GD.Print(Scale.Length());
 
 		if (targetScale > Scale.Length() && !headClearanceRay.IsColliding()) {
-			GD.Print("Scaling rate...", ScalingRate);
 			Scale += new Vector2(ScalingRate * (float)delta, ScalingRate * (float)delta);
 		}
 
@@ -48,22 +52,13 @@ public partial class Frank : CharacterBody2D
 
 		if (Input.IsActionJustReleased("scale_up")) {
 			if (headClearanceRay.IsColliding()) {
+				targetScale = Scale.Length(); // Remove any excess scalign from buffer
 				return;
 			}
-			
 			targetScale *= 1.2f;
-			
-
-			// Scale = new Vector2(
-			// 	Mathf.MoveToward(Scale.X, Scale.X*1.2f, ScalingRate),
-			// 	Mathf.MoveToward(Scale.Y, Scale.Y*1.2f, ScalingRate));
 		}
-
 		if (Input.IsActionJustReleased("scale_down")) {
 			targetScale *= 0.8f;
-			// Scale = new Vector2(
-			// 	Mathf.MoveToward(Scale.X, Scale.X*0.8f, ScalingRate),
-			// 	Mathf.MoveToward(Scale.Y, Scale.Y*0.8f, ScalingRate));
 		}
 
 		if (Input.IsActionPressed("ui_accept"))

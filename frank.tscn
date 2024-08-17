@@ -15,6 +15,7 @@ AirMobility = 70.0
 MaxFloorSpeed = 300.0
 Acceleration = 35.0
 ScalingRate = 2.0
+mininumScale = 0.25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 1.5)
