@@ -38,6 +38,7 @@ position = Vector2(-287, 271)
 position = Vector2(1, -29)
 rotation = -3.14159
 target_position = Vector2(3.11136e-05, 7)
+collide_with_areas = true
 
 [node name="SwitchDetector" type="Area2D" parent="."]
 collision_layer = 8
