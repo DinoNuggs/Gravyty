@@ -3,7 +3,7 @@ using System;
 
 public partial class Frank : CharacterBody2D
 {
-	public const float Speed = 300.0f;
+	public float Speed = 300.0f;
 	public const float JumpVelocity = -400.0f;
 
 	[Export]
@@ -24,6 +24,8 @@ public partial class Frank : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
+		float scaleModifier = Scale.Length()/1.4142135f;
+		GD.Print("scale modifier: ", scaleModifier);
 
 		if (Input.IsActionJustReleased("scale_up")) {
 			GD.Print("Scaling up", Scale);
@@ -41,13 +43,13 @@ public partial class Frank : CharacterBody2D
 
 		if (Input.IsActionPressed("ui_accept"))
 		{
-			velocity.Y -= 400 * Floatiness * (float)delta;
+			velocity.Y -= 400 * Floatiness * scaleModifier * (float)delta;
 		}
 		
 		// Handle Jump.
 		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
 		{
-			velocity.Y = JumpVelocity;
+			velocity.Y = JumpVelocity * scaleModifier;
 		}
 
 		// Add the gravity.
@@ -64,7 +66,7 @@ public partial class Frank : CharacterBody2D
 		if (IsOnFloor()) {
 			if (direction != Vector2.Zero)
 			{
-				velocity.X = Mathf.MoveToward(Velocity.X, direction.X * Speed, Acceleration);
+				velocity.X = Mathf.MoveToward(Velocity.X, direction.X * Speed * scaleModifier, Acceleration);
 			}
 			else
 			{
@@ -75,24 +77,24 @@ public partial class Frank : CharacterBody2D
 			if(Math.Abs(velocity.X) > MaxFloorSpeed)
 			{
 				GD.Print("cappin");
-				velocity.X = Mathf.MoveToward(Velocity.X, MaxFloorSpeed * direction.X, Speed);
+				velocity.X = Mathf.MoveToward(Velocity.X, MaxFloorSpeed * direction.X * scaleModifier, Speed);
 			}
 		} else {
 			// In air, should be more harder to change direction
 			if (direction != Vector2.Zero)
 			{
 				GD.Print("in air, moving");
-				velocity.X = Mathf.MoveToward(Velocity.X, direction.X * Speed, AirMobility);
+				velocity.X = Mathf.MoveToward(Velocity.X, direction.X * Speed * scaleModifier, AirMobility);
 			}
 			else
 			{
-				velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed / AirInertia);
+				velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed * scaleModifier / AirInertia);
 			}
 			// Cap horizontal air speed
 			if(Math.Abs(velocity.X) > MaxFloorSpeed)
 			{
 				GD.Print("cappin");
-				velocity.X = Mathf.MoveToward(Velocity.X, MaxFloorSpeed * direction.X, Speed);
+				velocity.X = Mathf.MoveToward(Velocity.X, MaxFloorSpeed * direction.X * scaleModifier, Speed);
 			}
 		}
 		
