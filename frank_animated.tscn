@@ -1,0 +1,126 @@
+[gd_scene load_steps=17 format=3 uid="uid://c0wtabte67eey"]
+
+[ext_resource type="Script" path="res://Frank.cs" id="1_0wcwx"]
+[ext_resource type="Script" path="res://PlayerCamera.cs" id="3_ime3c"]
+[ext_resource type="PackedScene" uid="uid://d15sjv8kllv23" path="res://ui.tscn" id="4_q3rpj"]
+[ext_resource type="Texture2D" uid="uid://c8vkti7gt378c" path="res://Sprites/frank_anims.png" id="5_k8oov"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4wbw"]
+size = Vector2(20, 61)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03d7y"]
+size = Vector2(8, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5bun"]
+atlas = ExtResource("5_k8oov")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_em1sw"]
+atlas = ExtResource("5_k8oov")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k24jf"]
+atlas = ExtResource("5_k8oov")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7l2nv"]
+atlas = ExtResource("5_k8oov")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekgul"]
+atlas = ExtResource("5_k8oov")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5b88"]
+atlas = ExtResource("5_k8oov")
+region = Rect2(160, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3wq1"]
+atlas = ExtResource("5_k8oov")
+region = Rect2(192, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3yeu"]
+atlas = ExtResource("5_k8oov")
+region = Rect2(224, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmopb"]
+atlas = ExtResource("5_k8oov")
+region = Rect2(256, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vpry7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5bun")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_em1sw")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_k24jf")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_7l2nv")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_ekgul")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_w5b88")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_b3wq1")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_d3yeu")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_rmopb")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Frank" type="CharacterBody2D"]
+script = ExtResource("1_0wcwx")
+Slidiness = 20.0
+AirInertia = 20.0
+AirMobility = 70.0
+MaxFloorSpeed = 300.0
+Acceleration = 35.0
+ScalingRate = 2.0
+mininumScale = 0.25
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1.5)
+shape = SubResource("RectangleShape2D_t4wbw")
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+script = ExtResource("3_ime3c")
+
+[node name="UI_Slider" parent="PlayerCamera" instance=ExtResource("4_q3rpj")]
+position = Vector2(-287, 271)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(1, -29)
+rotation = -3.14159
+target_position = Vector2(3.11136e-05, 7)
+
+[node name="SwitchDetector" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwitchDetector"]
+position = Vector2(1, 29)
+shape = SubResource("RectangleShape2D_03d7y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vpry7")
+animation = &"walk"
+frame_progress = 0.140867
