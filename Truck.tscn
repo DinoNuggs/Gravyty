@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://debjdrnnia6m"]
 
 [ext_resource type="Script" path="res://falling_object.cs" id="1_i8j1t"]
-[ext_resource type="Texture2D" uid="uid://2qns7h57ws12" path="res://truck.png" id="2_iw1xb"]
+[ext_resource type="Texture2D" uid="uid://2qns7h57ws12" path="res://Sprites/truck.png" id="2_iw1xb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v46ri"]
 size = Vector2(212.857, 67.1429)
