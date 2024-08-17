@@ -26,13 +26,17 @@ public partial class Frank : CharacterBody2D
 		Vector2 velocity = Velocity;
 
 		if (Input.IsActionJustReleased("scale_up")) {
-			GD.Print("Scaling up");
-			Scale += new Vector2(1, 1) * ScalingRate;
+			GD.Print("Scaling up", Scale);
+
+			Scale = new Vector2(
+				Mathf.MoveToward(Scale.X, Scale.X*1.2f, ScalingRate),
+				Mathf.MoveToward(Scale.Y, Scale.Y*1.2f, ScalingRate));
 		}
 
 		if (Input.IsActionJustReleased("scale_down")) {
-			GD.Print("Scaling up");
-			Scale += new Vector2(-1, -1) * ScalingRate;
+			Scale = new Vector2(
+				Mathf.MoveToward(Scale.X, Scale.X*0.8f, ScalingRate),
+				Mathf.MoveToward(Scale.Y, Scale.Y*0.8f, ScalingRate));
 		}
 
 		if (Input.IsActionPressed("ui_accept"))
