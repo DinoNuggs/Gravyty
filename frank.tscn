@@ -9,6 +9,12 @@ size = Vector2(20, 61)
 
 [node name="Frank" type="CharacterBody2D"]
 script = ExtResource("1_vh5xd")
+Slidiness = 20.0
+AirInertia = 20.0
+AirMobility = 70.0
+MaxFloorSpeed = 300.0
+Acceleration = 35.0
+ScalingRate = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 1.5)
@@ -19,3 +25,8 @@ texture = ExtResource("2_o7yx6")
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 script = ExtResource("3_uwhrp")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(1, -29)
+rotation = -3.14159
+target_position = Vector2(3.11136e-05, 7)

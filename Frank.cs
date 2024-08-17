@@ -21,24 +21,49 @@ public partial class Frank : CharacterBody2D
 	[Export]
 	public float ScalingRate = 1;
 
+	private CollisionObject2D headClearanceBox;
+	private RayCast2D headClearanceRay;
+	private float targetScale;
+
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+		headClearanceBox = GetNode<CollisionObject2D>("HeadClearanceBox");
+		headClearanceRay = GetNode<RayCast2D>("RayCast2D");
+		targetScale = Scale.Length();
+	}
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
 		float scaleModifier = Scale.Length()/1.4142135f;
-		GD.Print("scale modifier: ", scaleModifier);
+
+		if (targetScale > Scale.Length() && !headClearanceRay.IsColliding()) {
+			GD.Print("Scaling rate...", ScalingRate);
+			Scale += new Vector2(ScalingRate * (float)delta, ScalingRate * (float)delta);
+		}
+
+		if (targetScale < Scale.Length()) {
+			Scale -= new Vector2(ScalingRate * (float)delta, ScalingRate * (float)delta);
+		}
 
 		if (Input.IsActionJustReleased("scale_up")) {
-			GD.Print("Scaling up", Scale);
+			if (headClearanceRay.IsColliding()) {
+				return;
+			}
+			
+			targetScale *= 1.2f;
+			
 
-			Scale = new Vector2(
-				Mathf.MoveToward(Scale.X, Scale.X*1.2f, ScalingRate),
-				Mathf.MoveToward(Scale.Y, Scale.Y*1.2f, ScalingRate));
+			// Scale = new Vector2(
+			// 	Mathf.MoveToward(Scale.X, Scale.X*1.2f, ScalingRate),
+			// 	Mathf.MoveToward(Scale.Y, Scale.Y*1.2f, ScalingRate));
 		}
 
 		if (Input.IsActionJustReleased("scale_down")) {
-			Scale = new Vector2(
-				Mathf.MoveToward(Scale.X, Scale.X*0.8f, ScalingRate),
-				Mathf.MoveToward(Scale.Y, Scale.Y*0.8f, ScalingRate));
+			targetScale *= 0.8f;
+			// Scale = new Vector2(
+			// 	Mathf.MoveToward(Scale.X, Scale.X*0.8f, ScalingRate),
+			// 	Mathf.MoveToward(Scale.Y, Scale.Y*0.8f, ScalingRate));
 		}
 
 		if (Input.IsActionPressed("ui_accept"))
@@ -66,11 +91,11 @@ public partial class Frank : CharacterBody2D
 		if (IsOnFloor()) {
 			if (direction != Vector2.Zero)
 			{
-				velocity.X = Mathf.MoveToward(Velocity.X, direction.X * Speed * scaleModifier, Acceleration);
+				velocity.X = Mathf.MoveToward(Velocity.X, direction.X * Speed * scaleModifier, Acceleration * scaleModifier);
 			}
 			else
 			{
-				velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed / Slidiness);
+				velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed * scaleModifier / Slidiness);
 			}
 
 			// Cap run speed
@@ -80,7 +105,7 @@ public partial class Frank : CharacterBody2D
 				velocity.X = Mathf.MoveToward(Velocity.X, MaxFloorSpeed * direction.X * scaleModifier, Speed);
 			}
 		} else {
-			// In air, should be more harder to change direction
+			// In air, should be harder to change direction
 			if (direction != Vector2.Zero)
 			{
 				GD.Print("in air, moving");
@@ -97,9 +122,12 @@ public partial class Frank : CharacterBody2D
 				velocity.X = Mathf.MoveToward(Velocity.X, MaxFloorSpeed * direction.X * scaleModifier, Speed);
 			}
 		}
-		
 
 		Velocity = velocity;
 		MoveAndSlide();
+	}
+
+	public void OnHeadClearanceBoxEnter() {
+		GD.Print("bonking");
 	}
 }

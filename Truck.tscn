@@ -8,8 +8,8 @@ gravity_scale = 0.6
 script = ExtResource("1_i8j1t")
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(0.499999, 6.5)
-scale = Vector2(4.805, 1.635)
+position = Vector2(0.348761, 6.45329)
+scale = Vector2(4.79903, 1.63321)
 polygon = PackedVector2Array(15.5047, -15.5963, -14.8803, -15.5963, -15.9209, 8.25688, -11.7586, 8.8685, -9.67742, 18.0428, -5.72321, 18.0428, -4.05827, 10.0917, 5.93132, 10.0917, 7.38814, 19.2661, 11.9667, 19.2661)
 
 [node name="Button" type="Button" parent="."]
