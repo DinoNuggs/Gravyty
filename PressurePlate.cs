@@ -1,9 +1,10 @@
 using Godot;
 using System;
 
-public partial class PressurePlate : StaticBody2D
+public partial class PressurePlate : Area2D
 {
 	[Export] public float weightThreshold = 0;
+	[Signal] public delegate void ButtonPressedEventHandler();
 	private bool wasPressed = false;
 	private bool wasReleased = false;
 	private PhysicsBody2D bodySteppingOnButton = null;
@@ -22,6 +23,8 @@ public partial class PressurePlate : StaticBody2D
 	{
 		if(wasPressed && frank.GetWeight() > weightThreshold) {
 			Scale = new Vector2(Scale.X, Scale.Y  * 0.25f);
+			GD.Print("Emitting ", SignalName.ButtonPressed);
+			EmitSignal(SignalName.ButtonPressed);
 			wasPressed = false;
 		}
 
@@ -32,6 +35,7 @@ public partial class PressurePlate : StaticBody2D
 	}
 
 	public void OnAreaEntered(Area2D area) {
+		GD.Print(area.Name);
 		bodySteppingOnButton = area.GetParent<PhysicsBody2D>();
 		frank = area.GetParentOrNull<Frank>();
 		wasPressed = true;
@@ -40,5 +44,9 @@ public partial class PressurePlate : StaticBody2D
 	public void OnAreaExited(Area2D area) {
 		bodySteppingOnButton = null;
 		wasReleased = true;
+	}
+
+	public void OnWTF() {
+		GD.Print("pleasse");
 	}
 }
