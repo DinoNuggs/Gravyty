@@ -22,10 +22,12 @@ public partial class Frank : CharacterBody2D
 	public float ScalingRate = 1;
 	[Export] public float mininumScale = 0.1f;
 	[Export] public float maximumScale = 10f;
+	[Export] public float mass = 10f;
 
 	private CollisionObject2D headClearanceBox;
 	private RayCast2D headClearanceRay;
 	private float targetScale;
+	private float weight;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -33,6 +35,7 @@ public partial class Frank : CharacterBody2D
 		headClearanceBox = GetNode<CollisionObject2D>("HeadClearanceBox");
 		headClearanceRay = GetNode<RayCast2D>("RayCast2D");
 		targetScale = Scale.Length();
+		weight = Scale.Length()*Scale.Length() * mass;
 	}
 	public override void _PhysicsProcess(double delta)
 	{
@@ -40,7 +43,6 @@ public partial class Frank : CharacterBody2D
 		float scaleModifier = Scale.Length()/1.4142135f;
 		
 		targetScale = Math.Clamp(targetScale, mininumScale, maximumScale);
-		GD.Print(Scale.Length());
 
 		if (targetScale > Scale.Length() && !headClearanceRay.IsColliding()) {
 			Scale += new Vector2(ScalingRate * (float)delta, ScalingRate * (float)delta);
@@ -124,5 +126,9 @@ public partial class Frank : CharacterBody2D
 
 	public void OnHeadClearanceBoxEnter() {
 		GD.Print("bonking");
+	}
+
+	public float GetWeight() {
+		return weight;
 	}
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdeewlc3chu25"]
+[gd_scene load_steps=6 format=3 uid="uid://bdeewlc3chu25"]
 
 [ext_resource type="Script" path="res://Frank.cs" id="1_vh5xd"]
 [ext_resource type="Texture2D" uid="uid://dmomat681kb0f" path="res://Sprites/frank.png" id="2_o7yx6"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t4wbw"]
 size = Vector2(20, 61)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03d7y"]
+size = Vector2(8, 6)
 
 [node name="Frank" type="CharacterBody2D"]
 script = ExtResource("1_vh5xd")
@@ -31,3 +34,9 @@ script = ExtResource("3_uwhrp")
 position = Vector2(1, -29)
 rotation = -3.14159
 target_position = Vector2(3.11136e-05, 7)
+
+[node name="SwitchDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwitchDetector"]
+position = Vector2(1, 29)
+shape = SubResource("RectangleShape2D_03d7y")
