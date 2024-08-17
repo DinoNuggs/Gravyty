@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c0wtabte67eey"]
+[gd_scene load_steps=17 format=3 uid="uid://byiurmv1h0r8a"]
 
 [ext_resource type="Script" path="res://Frank.cs" id="1_0wcwx"]
 [ext_resource type="Script" path="res://PlayerCamera.cs" id="3_ime3c"]
@@ -123,4 +123,4 @@ shape = SubResource("RectangleShape2D_03d7y")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vpry7")
 animation = &"walk"
-frame_progress = 0.140867
+frame_progress = 0.819861

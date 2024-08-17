@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://dabdctxp7rp6q" path="res://Sprites/Boogers-sheet-sheet.png" id="2_8pbof"]
 [ext_resource type="PackedScene" uid="uid://debjdrnnia6m" path="res://Truck.tscn" id="3_fqi43"]
 [ext_resource type="Script" path="res://trash.cs" id="3_y63y4"]
-[ext_resource type="PackedScene" uid="uid://bdeewlc3chu25" path="res://frank.tscn" id="4_8j187"]
 [ext_resource type="PackedScene" uid="uid://bb7dx0vidlif2" path="res://pressure_plate.tscn" id="5_il14y"]
 [ext_resource type="PackedScene" uid="uid://d31cj2poflhc8" path="res://door.tscn" id="6_4wxtq"]
+[ext_resource type="PackedScene" uid="uid://byiurmv1h0r8a" path="res://frank_animated.tscn" id="7_qciag"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ps3gf"]
 texture = ExtResource("2_8pbof")
@@ -61,10 +61,6 @@ position = Vector2(1069, -168)
 [node name="Truck2" parent="." instance=ExtResource("3_fqi43")]
 position = Vector2(631, 279)
 
-[node name="Frank" parent="." instance=ExtResource("4_8j187")]
-position = Vector2(111, 415)
-ScalingRate = 5.0
-
 [node name="PressurePlate" parent="." instance=ExtResource("5_il14y")]
 position = Vector2(169, 446)
 
@@ -74,6 +70,10 @@ weightThreshold = 10.0
 
 [node name="Door" parent="." instance=ExtResource("6_4wxtq")]
 position = Vector2(396, 372)
+
+[node name="Frank" parent="." instance=ExtResource("7_qciag")]
+position = Vector2(-171, 406)
+ScalingRate = 5.0
 
 [connection signal="ButtonPressed" from="PressurePlate" to="Door" method="OnOpenSignal"]
 [connection signal="ButtonPressed" from="HeavyPlate" to="Door" method="OnOpenSignal"]

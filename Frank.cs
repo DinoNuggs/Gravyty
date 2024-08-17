@@ -26,6 +26,7 @@ public partial class Frank : CharacterBody2D
 
 	private CollisionObject2D headClearanceBox;
 	private RayCast2D headClearanceRay;
+	private AnimatedSprite2D animator;
 	private float targetScale;
 	private float weight;
 
@@ -34,6 +35,7 @@ public partial class Frank : CharacterBody2D
 	{
 		headClearanceBox = GetNode<CollisionObject2D>("HeadClearanceBox");
 		headClearanceRay = GetNode<RayCast2D>("RayCast2D");
+		animator = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		targetScale = Scale.Length();
 		weight = Scale.Length()*Scale.Length() * mass;
 	}
@@ -90,10 +92,19 @@ public partial class Frank : CharacterBody2D
 		if (IsOnFloor()) {
 			if (direction != Vector2.Zero)
 			{
+				animator.Play("walk");
+
+				if (direction.X < 0) {
+					animator.FlipH = true;
+				} else {
+					animator.FlipH = false;
+				}
+				
 				velocity.X = Mathf.MoveToward(Velocity.X, direction.X * Speed * scaleModifier, Acceleration * scaleModifier);
 			}
 			else
 			{
+				animator.Play("idle");
 				velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed * scaleModifier / Slidiness);
 			}
 
@@ -105,6 +116,12 @@ public partial class Frank : CharacterBody2D
 			}
 		} else {
 			// In air, should be harder to change direction
+			animator.Play("idle");
+			if ( Velocity.X < 0 ) {
+				animator.FlipH = true;
+			} else {
+				animator.FlipH = false;
+			}
 			if (direction != Vector2.Zero)
 			{
 				GD.Print("in air, moving");
