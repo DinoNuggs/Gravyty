@@ -29,6 +29,7 @@ public partial class Frank : CharacterBody2D
 	private AnimatedSprite2D animator;
 	private float targetScale;
 	private float weight;
+	private bool canScale = true;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -48,7 +49,11 @@ public partial class Frank : CharacterBody2D
 		
 		targetScale = Math.Clamp(targetScale, mininumScale, maximumScale);
 
-		if (targetScale > Scale.Length() && !headClearanceRay.IsColliding()) {
+		if (headClearanceRay.IsColliding()) {
+			canScale = false;
+		}
+
+		if (targetScale > Scale.Length() && canScale) {
 			Scale += new Vector2(ScalingRate * (float)delta, ScalingRate * (float)delta);
 		}
 
