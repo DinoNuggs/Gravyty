@@ -200,6 +200,7 @@ shape = SubResource("RectangleShape2D_03d7y")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vpry7")
 animation = &"airborne"
-frame_progress = 0.389599
+frame = 4
+frame_progress = 0.395285
 
 [connection signal="value_changed" from="PlayerCamera/UI_Slider" to="." method="OnScaleChange"]
