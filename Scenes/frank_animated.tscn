@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://byiurmv1h0r8a"]
+[gd_scene load_steps=27 format=3 uid="uid://byiurmv1h0r8a"]
 
 [ext_resource type="Script" path="res://Scripts/Frank.cs" id="1_0wcwx"]
 [ext_resource type="Script" path="res://Scripts/PlayerCamera.cs" id="3_ime3c"]
@@ -152,6 +152,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iscsi"]
+size = Vector2(5, 56)
+
 [node name="Frank" type="CharacterBody2D"]
 script = ExtResource("1_0wcwx")
 Slidiness = 20.0
@@ -200,4 +203,21 @@ animation = &"airborne"
 frame = 3
 frame_progress = 0.688759
 
+[node name="LeftDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftDetector"]
+position = Vector2(-13, -30)
+shape = SubResource("RectangleShape2D_iscsi")
+
+[node name="RightDetector" type="Area2D" parent="."]
+position = Vector2(26, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightDetector"]
+position = Vector2(-13, -30)
+shape = SubResource("RectangleShape2D_iscsi")
+
 [connection signal="value_changed" from="PlayerCamera/UI_Slider" to="." method="OnScaleChange"]
+[connection signal="body_entered" from="LeftDetector" to="." method="OnLeftDetected"]
+[connection signal="body_exited" from="LeftDetector" to="." method="OnLeftExitDetected"]
+[connection signal="body_entered" from="RightDetector" to="." method="OnRightDetected"]
+[connection signal="body_exited" from="RightDetector" to="." method="OnRightExitDetected"]
