@@ -133,7 +133,7 @@ public partial class Frank : CharacterBody2D
 			}
 		} else {
 			// In air, should be harder to change direction
-			animator.Play("idle");
+			animator.Play("airborne");
 			if ( Velocity.X < 0 ) {
 				animator.FlipH = true;
 			} else {

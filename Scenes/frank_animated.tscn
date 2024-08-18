@@ -177,7 +177,7 @@ offset_bottom = 311.0
 theme_override_styles/slider = SubResource("StyleBoxTexture_8kvs5")
 value = 20.0
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="HeadRay" type="RayCast2D" parent="."]
 position = Vector2(1, -29)
 rotation = -3.14159
 target_position = Vector2(3.11136e-05, 7)
@@ -193,7 +193,7 @@ shape = SubResource("RectangleShape2D_03d7y")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vpry7")
 animation = &"airborne"
-frame = 6
-frame_progress = 0.511625
+frame = 3
+frame_progress = 0.688759
 
 [connection signal="value_changed" from="PlayerCamera/UI_Slider" to="." method="OnScaleChange"]
