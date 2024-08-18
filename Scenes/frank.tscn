@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://bdeewlc3chu25"]
 
-[ext_resource type="Script" path="res://Frank.cs" id="1_vh5xd"]
+[ext_resource type="Script" path="res://Scripts/Frank.cs" id="1_vh5xd"]
 [ext_resource type="Texture2D" uid="uid://dmomat681kb0f" path="res://Sprites/frank.png" id="2_o7yx6"]
-[ext_resource type="Script" path="res://PlayerCamera.cs" id="3_uwhrp"]
-[ext_resource type="PackedScene" uid="uid://d15sjv8kllv23" path="res://ui.tscn" id="4_cmd5i"]
+[ext_resource type="Script" path="res://Scripts/PlayerCamera.cs" id="3_uwhrp"]
+[ext_resource type="PackedScene" uid="uid://d15sjv8kllv23" path="res://Scenes/ui.tscn" id="4_cmd5i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t4wbw"]
 size = Vector2(20, 61)

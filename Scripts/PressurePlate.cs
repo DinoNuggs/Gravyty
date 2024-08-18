@@ -8,28 +8,31 @@ public partial class PressurePlate : Area2D
 	private bool wasPressed = false;
 	private bool wasReleased = false;
 	private PhysicsBody2D bodySteppingOnButton = null;
+	private AnimatedSprite2D spriteAnimator;
+	private AnimationPlayer physicsAnimator;
 	private Frank frank;
-	private float height;
 	
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		height = GetNode<Sprite2D>("Sprite2D").Texture.GetHeight();
+		spriteAnimator = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		physicsAnimator = GetNode<AnimationPlayer>("StaticBody2D/AnimationPlayer");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		if(wasPressed && frank.GetWeight() > weightThreshold) {
-			Scale = new Vector2(Scale.X, Scale.Y  * 0.25f);
-			GD.Print("Emitting ", SignalName.ButtonPressed);
+			spriteAnimator.Play("pressed");
+			physicsAnimator.Play("pressed");
 			EmitSignal(SignalName.ButtonPressed);
 			wasPressed = false;
 		}
 
 		if(wasReleased) {
-			Scale = new Vector2(1, 1);
+			spriteAnimator.Play("notpressed");
+			physicsAnimator.Play("RESET");
 			wasReleased = false;
 		}
 	}

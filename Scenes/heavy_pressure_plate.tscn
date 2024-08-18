@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cdfivjxg070p7"]
 
-[ext_resource type="PackedScene" uid="uid://bb7dx0vidlif2" path="res://pressure_plate.tscn" id="1_jym12"]
-[ext_resource type="Script" path="res://HeavyPressurePlate.cs" id="2_xdha2"]
+[ext_resource type="PackedScene" uid="uid://bb7dx0vidlif2" path="res://Scenes/pressure_plate.tscn" id="1_jym12"]
+[ext_resource type="Script" path="res://Scripts/HeavyPressurePlate.cs" id="2_xdha2"]
 
 [node name="PressurePlate" instance=ExtResource("1_jym12")]
 script = ExtResource("2_xdha2")

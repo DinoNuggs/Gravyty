@@ -1,0 +1,105 @@
+[gd_scene load_steps=10 format=3 uid="uid://bb7dx0vidlif2"]
+
+[ext_resource type="Script" path="res://Scripts/PressurePlate.cs" id="1_yfv51"]
+[ext_resource type="Texture2D" uid="uid://bryor8andhvyu" path="res://Sprites/pressureplate.png" id="2_hj0oh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_my255"]
+size = Vector2(33, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pkwt"]
+atlas = ExtResource("2_hj0oh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjsqs"]
+atlas = ExtResource("2_hj0oh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c48xk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pkwt")
+}],
+"loop": true,
+"name": &"notpressed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjsqs")
+}],
+"loop": true,
+"name": &"pressed",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_11p8a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PhysicsCollider:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bdkb6"]
+resource_name = "pressed"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PhysicsCollider:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 1), Vector2(0, 3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4gofo"]
+_data = {
+"RESET": SubResource("Animation_11p8a"),
+"pressed": SubResource("Animation_bdkb6")
+}
+
+[node name="PressurePlate" type="Area2D"]
+z_index = -1
+position = Vector2(0, -2)
+collision_layer = 11
+collision_mask = 11
+script = ExtResource("1_yfv51")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -3.5)
+shape = SubResource("RectangleShape2D_my255")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -21)
+scale = Vector2(1.2, 1.433)
+sprite_frames = SubResource("SpriteFrames_c48xk")
+animation = &"notpressed"
+frame_progress = 0.236006
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="PhysicsCollider" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(0, 1)
+polygon = PackedVector2Array(-24, 1, -12, -4, 10, -4, 24, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StaticBody2D"]
+libraries = {
+"": SubResource("AnimationLibrary_4gofo")
+}
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
+[connection signal="area_exited" from="." to="." method="OnAreaExited"]

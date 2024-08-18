@@ -1,9 +1,9 @@
 [gd_scene load_steps=19 format=3 uid="uid://byiurmv1h0r8a"]
 
-[ext_resource type="Script" path="res://Frank.cs" id="1_0wcwx"]
-[ext_resource type="Script" path="res://PlayerCamera.cs" id="3_ime3c"]
+[ext_resource type="Script" path="res://Scripts/Frank.cs" id="1_0wcwx"]
+[ext_resource type="Script" path="res://Scripts/PlayerCamera.cs" id="3_ime3c"]
 [ext_resource type="Texture2D" uid="uid://c7jatj25541pu" path="res://Sprites/UI-SliderPanel.png" id="4_86rq6"]
-[ext_resource type="PackedScene" uid="uid://d15sjv8kllv23" path="res://ui.tscn" id="4_q3rpj"]
+[ext_resource type="PackedScene" uid="uid://d15sjv8kllv23" path="res://Scenes/ui.tscn" id="4_q3rpj"]
 [ext_resource type="Texture2D" uid="uid://c8vkti7gt378c" path="res://Sprites/frank_anims.png" id="5_k8oov"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t4wbw"]
@@ -138,6 +138,8 @@ shape = SubResource("RectangleShape2D_03d7y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vpry7")
-animation = &"idle"
+animation = &"walk"
+frame = 2
+frame_progress = 0.65538
 
 [connection signal="value_changed" from="PlayerCamera/UI_Slider" to="." method="OnScaleChange"]
