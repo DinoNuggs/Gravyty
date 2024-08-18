@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://byiurmv1h0r8a"]
+[gd_scene load_steps=26 format=3 uid="uid://byiurmv1h0r8a"]
 
 [ext_resource type="Script" path="res://Scripts/Frank.cs" id="1_0wcwx"]
 [ext_resource type="Script" path="res://Scripts/PlayerCamera.cs" id="3_ime3c"]
@@ -21,10 +21,6 @@ expand_margin_right = 15.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_03d7y"]
 size = Vector2(8, 6)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6tjh6"]
-atlas = ExtResource("5_k8oov")
-region = Rect2(288, 0, 32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_86cbk"]
 atlas = ExtResource("5_k8oov")
@@ -93,9 +89,6 @@ region = Rect2(256, 0, 32, 64)
 [sub_resource type="SpriteFrames" id="SpriteFrames_vpry7"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6tjh6")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_86cbk")
 }, {
@@ -200,7 +193,7 @@ shape = SubResource("RectangleShape2D_03d7y")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vpry7")
 animation = &"airborne"
-frame = 4
-frame_progress = 0.395285
+frame = 3
+frame_progress = 0.531026
 
 [connection signal="value_changed" from="PlayerCamera/UI_Slider" to="." method="OnScaleChange"]
