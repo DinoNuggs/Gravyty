@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://dmjmwof50wyxf" path="res://Sprites/Manhole.png" id="4_63dtb"]
 [ext_resource type="PackedScene" uid="uid://iujx5gpvjfcx" path="res://Scenes/rocket.tscn" id="4_q2tkf"]
 [ext_resource type="PackedScene" uid="uid://bb7dx0vidlif2" path="res://Scenes/pressure_plate.tscn" id="5_dagry"]
-[ext_resource type="Texture2D" uid="uid://b6pl36n7j8ey8" path="res://Sprites/Prop_Road-Block.png" id="5_os4lv"]
-[ext_resource type="Texture2D" uid="uid://moaiyhpb758i" path="res://Sprites/Prop_Lamp-Post.png" id="5_qtqnj"]
 [ext_resource type="Texture2D" uid="uid://chphr2n5w7i4r" path="res://Sprites/Prop_7Mart.png" id="7_10ek0"]
 [ext_resource type="Texture2D" uid="uid://xl1fovu6r5xh" path="res://Sprites/Prop_LaunchPad.png" id="8_1a6c2"]
+[ext_resource type="PackedScene" uid="uid://2tw2tknebg46" path="res://Scenes/road_block.tscn" id="9_7pdla"]
+[ext_resource type="PackedScene" uid="uid://bllkg5n0euvgj" path="res://Scenes/lamp.tscn" id="9_bnf2p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lcn1d"]
 texture = ExtResource("1_1dtse")
@@ -50,16 +50,6 @@ position = Vector2(764, 29)
 scale = Vector2(0.4375, 0.4375)
 texture = ExtResource("4_63dtb")
 
-[node name="PropLamp-post" type="Sprite2D" parent="."]
-position = Vector2(1234, -128.824)
-scale = Vector2(0.482368, 0.482368)
-texture = ExtResource("5_qtqnj")
-
-[node name="PropRoad-block" type="Sprite2D" parent="."]
-position = Vector2(1171, -57.5)
-scale = Vector2(0.430952, 0.430952)
-texture = ExtResource("5_os4lv")
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -81,5 +71,13 @@ position = Vector2(2160, 32)
 scale = Vector2(4, 4)
 weightThreshold = 500.0
 oneShot = true
+
+[node name="RoadBlock" parent="." instance=ExtResource("9_7pdla")]
+position = Vector2(1160, -71)
+scale = Vector2(0.486564, 0.508965)
+
+[node name="Lamp" parent="." instance=ExtResource("9_bnf2p")]
+position = Vector2(1294, -193)
+scale = Vector2(0.7, 0.7)
 
 [connection signal="ButtonPressed" from="PressurePlate" to="Rocket" method="OnLaunchSignal"]

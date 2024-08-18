@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://2tw2tknebg46"]
+
+[ext_resource type="Texture2D" uid="uid://b6pl36n7j8ey8" path="res://Sprites/Prop_Road-Block.png" id="1_oo48c"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_oo48c")
