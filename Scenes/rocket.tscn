@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://iujx5gpvjfcx"]
+[gd_scene load_steps=6 format=3 uid="uid://iujx5gpvjfcx"]
 
 [ext_resource type="Script" path="res://Scenes/Rocket.cs" id="1_n8jnv"]
+[ext_resource type="Texture2D" uid="uid://4pg4hw8a42d4" path="res://Sprites/Prop_Rocket.png" id="2_7vc3w"]
 
 [sub_resource type="Animation" id="Animation_y8n2o"]
 length = 0.001
@@ -87,9 +88,10 @@ _data = {
 script = ExtResource("1_n8jnv")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(0, -240, -64, -64, -64, 344, 64, 344, 64, -64)
+polygon = PackedVector2Array(-16, -224, -58, -109, -75, 0, -76, 122, -56, 224, -80, 272, -88, 352, -40, 312, 0, 344, 64, 296, 120, 344, 112, 256, 64, 208, 71, 94, 61, -37, 35, -133)
 
 [node name="Polygon2D" type="Polygon2D" parent="CollisionPolygon2D"]
+visible = false
 polygon = PackedVector2Array(0, -240, -64, -64, -64, 344, 64, 344, 64, -64)
 
 [node name="OuterFire" type="CPUParticles2D" parent="CollisionPolygon2D"]
@@ -113,6 +115,10 @@ emission_sphere_radius = 42.85
 scale_amount_min = 31.77
 scale_amount_max = 101.0
 color = Color(1, 0.188235, 0.0745098, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionPolygon2D"]
+position = Vector2(16, 64)
+texture = ExtResource("2_7vc3w")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
