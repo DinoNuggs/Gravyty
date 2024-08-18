@@ -4,6 +4,7 @@ using System;
 public partial class PressurePlate : Area2D
 {
 	[Export] public float weightThreshold = 0;
+	[Export] public bool oneShot = false;
 	[Signal] public delegate void ButtonPressedEventHandler();
 	private bool wasPressed = false;
 	private bool wasReleased = false;
