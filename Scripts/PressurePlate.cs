@@ -48,6 +48,10 @@ public partial class PressurePlate : Area2D
 
 	public void OnAreaExited(Area2D area) {
 		bodySteppingOnButton = null;
+		if(oneShot){
+			return;
+		}
+		
 		wasReleased = true;
 	}
 

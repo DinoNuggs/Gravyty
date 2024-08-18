@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bryor8andhvyu" path="res://Sprites/pressureplate.png" id="2_hj0oh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_my255"]
-size = Vector2(33, 11)
+size = Vector2(23, 11)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7pkwt"]
 atlas = ExtResource("2_hj0oh")
@@ -78,7 +78,7 @@ collision_mask = 11
 script = ExtResource("1_yfv51")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -3.5)
+position = Vector2(-0.5, -3.5)
 shape = SubResource("RectangleShape2D_my255")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
