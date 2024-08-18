@@ -26,6 +26,7 @@ public partial class PressurePlate : Area2D
 		if(wasPressed && frank.GetWeight() > weightThreshold) {
 			spriteAnimator.Play("pressed");
 			physicsAnimator.Play("pressed");
+			GD.Print("Emitting");
 			EmitSignal(SignalName.ButtonPressed);
 			wasPressed = false;
 		}
