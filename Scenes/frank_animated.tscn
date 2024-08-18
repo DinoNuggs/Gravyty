@@ -22,33 +22,33 @@ expand_margin_right = 15.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_03d7y"]
 size = Vector2(8, 6)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_86cbk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7xu8"]
+atlas = ExtResource("5_k8oov")
+region = Rect2(288, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_papq6"]
 atlas = ExtResource("5_k8oov")
 region = Rect2(320, 0, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8hv7h"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ir1xp"]
 atlas = ExtResource("5_k8oov")
 region = Rect2(352, 0, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yeral"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mq2lx"]
 atlas = ExtResource("5_k8oov")
 region = Rect2(384, 0, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3dk6r"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2x658"]
 atlas = ExtResource("5_k8oov")
 region = Rect2(416, 0, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2svaa"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wt41k"]
 atlas = ExtResource("5_k8oov")
 region = Rect2(448, 0, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kd638"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0703"]
 atlas = ExtResource("5_k8oov")
 region = Rect2(480, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cmhh8"]
-atlas = ExtResource("5_k8oov")
-region = Rect2(512, 0, 32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l5bun"]
 atlas = ExtResource("5_k8oov")
@@ -90,25 +90,25 @@ region = Rect2(256, 0, 32, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_86cbk")
+"texture": SubResource("AtlasTexture_n7xu8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8hv7h")
+"texture": SubResource("AtlasTexture_papq6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yeral")
+"texture": SubResource("AtlasTexture_ir1xp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3dk6r")
+"texture": SubResource("AtlasTexture_mq2lx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2svaa")
+"texture": SubResource("AtlasTexture_2x658")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kd638")
+"texture": SubResource("AtlasTexture_wt41k")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cmhh8")
+"texture": SubResource("AtlasTexture_s0703")
 }],
 "loop": true,
 "name": &"airborne",
@@ -193,7 +193,7 @@ shape = SubResource("RectangleShape2D_03d7y")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vpry7")
 animation = &"airborne"
-frame = 3
-frame_progress = 0.531026
+frame = 6
+frame_progress = 0.511625
 
 [connection signal="value_changed" from="PlayerCamera/UI_Slider" to="." method="OnScaleChange"]
