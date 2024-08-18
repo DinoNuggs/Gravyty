@@ -1,12 +1,23 @@
-[gd_scene load_steps=17 format=3 uid="uid://byiurmv1h0r8a"]
+[gd_scene load_steps=19 format=3 uid="uid://byiurmv1h0r8a"]
 
 [ext_resource type="Script" path="res://Frank.cs" id="1_0wcwx"]
 [ext_resource type="Script" path="res://PlayerCamera.cs" id="3_ime3c"]
+[ext_resource type="Texture2D" uid="uid://c7jatj25541pu" path="res://Sprites/UI-SliderPanel.png" id="4_86rq6"]
 [ext_resource type="PackedScene" uid="uid://d15sjv8kllv23" path="res://ui.tscn" id="4_q3rpj"]
 [ext_resource type="Texture2D" uid="uid://c8vkti7gt378c" path="res://Sprites/frank_anims.png" id="5_k8oov"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t4wbw"]
 size = Vector2(20, 61)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8kvs5"]
+resource_local_to_scene = true
+texture = ExtResource("4_86rq6")
+texture_margin_left = 10.0
+texture_margin_top = 20.0
+texture_margin_right = 10.0
+texture_margin_bottom = 20.0
+expand_margin_left = 15.0
+expand_margin_right = 15.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_03d7y"]
 size = Vector2(8, 6)
@@ -105,7 +116,12 @@ shape = SubResource("RectangleShape2D_t4wbw")
 script = ExtResource("3_ime3c")
 
 [node name="UI_Slider" parent="PlayerCamera" instance=ExtResource("4_q3rpj")]
-position = Vector2(-287, 271)
+offset_left = -287.0
+offset_top = 271.0
+offset_right = -87.0
+offset_bottom = 311.0
+theme_override_styles/slider = SubResource("StyleBoxTexture_8kvs5")
+value = 20.0
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(1, -29)
@@ -122,5 +138,6 @@ shape = SubResource("RectangleShape2D_03d7y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vpry7")
-animation = &"walk"
-frame_progress = 0.819861
+animation = &"idle"
+
+[connection signal="value_changed" from="PlayerCamera/UI_Slider" to="." method="OnScaleChange"]

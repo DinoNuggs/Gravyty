@@ -15,26 +15,14 @@ expand_margin_right = 15.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_65nbi"]
 
-[node name="UI_Slider" type="Node2D"]
-
-[node name="Ui-sliderPanel" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("1_o1in3")
-
-[node name="UiPaddle" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("2_ejrvc")
-
-[node name="HSlider" type="HSlider" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
+[node name="HSlider" type="HSlider"]
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -40.0
-offset_right = 100.0
-grow_horizontal = 2
+offset_left = 16.0
+offset_top = -44.0
+offset_right = 216.0
+offset_bottom = -4.0
 grow_vertical = 0
 tooltip_text = "go ahead
 see what happens"

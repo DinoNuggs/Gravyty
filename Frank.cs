@@ -90,6 +90,7 @@ public partial class Frank : CharacterBody2D
 
 		// Grounded
 		if (IsOnFloor()) {
+			animator.SpeedScale = 1/Scale.X;
 			if (direction != Vector2.Zero)
 			{
 				animator.Play("walk");
@@ -145,6 +146,12 @@ public partial class Frank : CharacterBody2D
 
 	public void OnHeadClearanceBoxEnter() {
 		GD.Print("bonking");
+	}
+
+	public void OnScaleChange(float val) {
+		GD.Print(val);
+		float ratioForScale = val/100;
+		targetScale = Math.Clamp(ratioForScale * 1.414f * maximumScale, mininumScale, maximumScale);
 	}
 
 	public float GetWeight() {
