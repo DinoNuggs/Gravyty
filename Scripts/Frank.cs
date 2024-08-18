@@ -24,18 +24,18 @@ public partial class Frank : CharacterBody2D
 	[Export] public float maximumScale = 10f;
 	[Export] public float mass = 10f;
 
-	private CollisionObject2D headClearanceBox;
 	private RayCast2D headClearanceRay;
 	private AnimatedSprite2D animator;
 	private float targetScale;
 	private float weight;
-	private bool canScale = true;
+	private bool canScaleUp = true;
+	private bool leftBlocked = false;
+	private bool rightBlocked = false;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		headClearanceBox = GetNode<CollisionObject2D>("HeadClearanceBox");
-		headClearanceRay = GetNode<RayCast2D>("RayCast2D");
+		headClearanceRay = GetNode<RayCast2D>("HeadRay");
 		animator = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		targetScale = Scale.Length();
 		weight = Scale.Length()*Scale.Length() * mass;
@@ -46,30 +46,37 @@ public partial class Frank : CharacterBody2D
 		Vector2 velocity = Velocity;
 		float scaleModifier = Scale.Length()/1.4142135f;
 		weight = Scale.Length()*Scale.Length() * mass;
-		
+		canScaleUp = true;
 		targetScale = Math.Clamp(targetScale, mininumScale, maximumScale);
 
 		if (headClearanceRay.IsColliding()) {
-			canScale = false;
+			//Cant scale if bonking above his head
+			canScaleUp = false;
+			targetScale = Scale.Length();
 		}
 
-		if (targetScale > Scale.Length() && canScale) {
+		if ( leftBlocked && rightBlocked ) {
+			//Cant scale if frank is squeezed on both sides
+			canScaleUp = false;
+			targetScale = Scale.Length();
+		}
+
+		if (Input.IsActionJustReleased("scale_up")) {
+			if (canScaleUp) {
+				targetScale *= 1.2f;
+			}
+			
+		}
+		if (Input.IsActionJustReleased("scale_down")) {
+			targetScale *= 0.8f;
+		}
+
+		if (targetScale > Scale.Length() && canScaleUp) {
 			Scale += new Vector2(ScalingRate * (float)delta, ScalingRate * (float)delta);
 		}
 
 		if (targetScale < Scale.Length()) {
 			Scale -= new Vector2(ScalingRate * (float)delta, ScalingRate * (float)delta);
-		}
-
-		if (Input.IsActionJustReleased("scale_up")) {
-			if (headClearanceRay.IsColliding()) {
-				targetScale = Scale.Length(); // Remove any excess scalign from buffer
-				return;
-			}
-			targetScale *= 1.2f;
-		}
-		if (Input.IsActionJustReleased("scale_down")) {
-			targetScale *= 0.8f;
 		}
 
 		if (Input.IsActionPressed("ui_accept"))
@@ -149,14 +156,38 @@ public partial class Frank : CharacterBody2D
 		MoveAndSlide();
 	}
 
-	public void OnHeadClearanceBoxEnter() {
-		GD.Print("bonking");
-	}
-
 	public void OnScaleChange(float val) {
 		GD.Print(val);
 		float ratioForScale = val/100;
 		targetScale = Math.Clamp(ratioForScale * 1.414f * maximumScale, mininumScale, maximumScale);
+	}
+
+	public void OnLeftDetected(Node2D body) {
+		GD.Print("left detected: ", body.Name);
+		if(body.Name != "Frank") {
+			leftBlocked = true;
+		}
+	}
+
+	public void OnLeftExitDetected(Node2D body) {
+		GD.Print("left detected: ", body.Name);
+		if(body.Name != "Frank") {
+			leftBlocked = false;
+		}
+	}
+
+	public void OnRightDetected(Node2D body) {
+		GD.Print("right detected: ", body.Name);
+		if(body.Name != "Frank") {
+			rightBlocked = true;
+		}
+	}
+
+	public void OnRightExitDetected(Node2D body) {
+		GD.Print("right detected: ", body.Name);
+		if(body.Name != "Frank") {
+			rightBlocked = false;
+		}
 	}
 
 	public float GetWeight() {
