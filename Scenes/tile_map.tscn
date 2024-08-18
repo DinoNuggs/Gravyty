@@ -114,5 +114,10 @@ ScalingRate = 5.0
 position = Vector2(392, 350)
 scale = Vector2(3, 3)
 
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-332, 398, -347, 417, -386, 420, -395, 378, -340, 372)
+
 [connection signal="ButtonPressed" from="PressurePlate" to="Door" method="OnOpenSignal"]
 [connection signal="ButtonPressed" from="HeavyPlate" to="Door" method="OnOpenSignal"]
