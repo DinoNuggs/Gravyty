@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Frank : CharacterBody2D
 {
@@ -23,6 +24,15 @@ public partial class Frank : CharacterBody2D
 	[Export] public float mininumScale = 0.1f;
 	[Export] public float maximumScale = 10f;
 	[Export] public float mass = 10f;
+	[Export] public AudioStreamPlayer jumpAudio;
+	[Export] public AudioStreamPlayer landAudio;
+	[Export] public AudioStreamPlayer scaleUpAudio;
+	[Export] public AudioStreamPlayer scaleDownAudio;
+	[Export] public AudioStreamPlayer fallingAudio;
+	[Export] public AudioStreamPlayer footStep1;
+	[Export] public AudioStreamPlayer footStep2;
+	[Export] public AudioStreamPlayer BGMStart;
+	[Export] public AudioStreamPlayer BGMLoop;
 
 	private RayCast2D headClearanceRay;
 	private AnimatedSprite2D animator;
@@ -31,6 +41,8 @@ public partial class Frank : CharacterBody2D
 	private bool canScaleUp = true;
 	private bool leftBlocked = false;
 	private bool rightBlocked = false;
+	private List<AudioStreamPlayer> footSteps;
+	private int currPlayingFootStep = 1;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -39,6 +51,9 @@ public partial class Frank : CharacterBody2D
 		animator = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		targetScale = Scale.X;
 		weight = Scale.Length()*Scale.Length() * mass;
+		BGMStart.Play();
+
+		footSteps = new List<AudioStreamPlayer>(){footStep1, footStep2};
 	}
 	public override void _PhysicsProcess(double delta)
 	{
@@ -64,11 +79,13 @@ public partial class Frank : CharacterBody2D
 
 		if (Input.IsActionJustReleased("scale_up")) {
 			if (canScaleUp) {
+				if(!scaleUpAudio.Playing) { scaleUpAudio.Play(); }
 				targetScale *= 1.2f;
 			}
 			
 		}
 		if (Input.IsActionJustReleased("scale_down")) {
+			if(!scaleDownAudio.Playing) { scaleDownAudio.Play(); }
 			targetScale *= 0.8f;
 		}
 
@@ -76,6 +93,7 @@ public partial class Frank : CharacterBody2D
 		GD.Print("Scale: ", Scale, "\tTarget scale: ", targetScale, "\tScale modifier: ", scaleModifier);
 
 		if (targetScale > Scale.X && canScaleUp) {
+			
 			Scale += new Vector2(ScalingRate * (float)delta, ScalingRate * (float)delta);
 		}
 
@@ -85,12 +103,14 @@ public partial class Frank : CharacterBody2D
 
 		if (Input.IsActionPressed("ui_accept"))
 		{
+			// Jump float
 			velocity.Y -= 400 * Floatiness * scaleModifier * (float)delta;
 		}
 		
 		// Handle Jump.
 		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
 		{
+			if(!jumpAudio.Playing) { jumpAudio.Play(); }
 			velocity.Y = JumpVelocity * scaleModifier;
 		}
 
@@ -110,6 +130,12 @@ public partial class Frank : CharacterBody2D
 			if (direction != Vector2.Zero)
 			{
 				animator.Play("walk");
+
+				if(!footStep1.Playing && !footStep2.Playing) {
+					footSteps[currPlayingFootStep % 2].Play();
+					currPlayingFootStep++;
+				}
+				
 
 				if (direction.X < 0) {
 					animator.FlipH = true;
@@ -192,5 +218,13 @@ public partial class Frank : CharacterBody2D
 
 	public float GetWeight() {
 		return weight;
+	}
+
+	public void OnMusicLoopFinished() {
+		BGMLoop.Play();
+	}
+
+	public void OnIntroMusicFinished() {
+		BGMLoop.Play();
 	}
 }

@@ -1,10 +1,18 @@
-[gd_scene load_steps=27 format=3 uid="uid://byiurmv1h0r8a"]
+[gd_scene load_steps=35 format=3 uid="uid://byiurmv1h0r8a"]
 
 [ext_resource type="Script" path="res://Scripts/Frank.cs" id="1_0wcwx"]
 [ext_resource type="Script" path="res://Scripts/PlayerCamera.cs" id="3_ime3c"]
 [ext_resource type="Texture2D" uid="uid://c7jatj25541pu" path="res://Sprites/UI-SliderPanel.png" id="4_86rq6"]
 [ext_resource type="PackedScene" uid="uid://d15sjv8kllv23" path="res://Scenes/ui.tscn" id="4_q3rpj"]
 [ext_resource type="Texture2D" uid="uid://c8vkti7gt378c" path="res://Sprites/frank_anims.png" id="5_k8oov"]
+[ext_resource type="AudioStream" uid="uid://bo7v7kbp37dhi" path="res://Audio/SFX/SFX_Jump-HYUP.wav" id="6_7wb4q"]
+[ext_resource type="AudioStream" uid="uid://dwe3ab04dhf20" path="res://Audio/SFX/SFX_Footstep-1.wav" id="7_caafe"]
+[ext_resource type="AudioStream" uid="uid://bkcv0qxbg7e2b" path="res://Audio/SFX/SFX_SCALEUP.wav" id="8_gn6qy"]
+[ext_resource type="AudioStream" uid="uid://c6jwwiotd6oei" path="res://Audio/SFX/SFX_SCALEDOWN.wav" id="9_fyvf4"]
+[ext_resource type="AudioStream" uid="uid://dnjl64ml8vki" path="res://Audio/SFX/SFX_Jump-Whoosh.wav" id="10_btot1"]
+[ext_resource type="AudioStream" uid="uid://dxxaqj6pubyap" path="res://Audio/SFX/SFX_Footstep-2.wav" id="11_crs63"]
+[ext_resource type="AudioStream" uid="uid://capu2v1tljldl" path="res://Audio/Tunes/frank.wav" id="12_itrqd"]
+[ext_resource type="AudioStream" uid="uid://bvnwdq6vwa07c" path="res://Audio/Tunes/BGM-START.wav" id="13_bnn7k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t4wbw"]
 size = Vector2(20, 61)
@@ -155,7 +163,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iscsi"]
 size = Vector2(5, 56)
 
-[node name="Frank" type="CharacterBody2D"]
+[node name="Frank" type="CharacterBody2D" node_paths=PackedStringArray("jumpAudio", "landAudio", "scaleUpAudio", "scaleDownAudio", "fallingAudio", "footStep1", "footStep2", "BGMStart", "BGMLoop")]
 script = ExtResource("1_0wcwx")
 Slidiness = 20.0
 AirInertia = 20.0
@@ -164,6 +172,15 @@ MaxFloorSpeed = 300.0
 Acceleration = 35.0
 ScalingRate = 2.0
 mininumScale = 0.25
+jumpAudio = NodePath("Audio/Jump")
+landAudio = NodePath("Audio/Land")
+scaleUpAudio = NodePath("Audio/ScaleUp")
+scaleDownAudio = NodePath("Audio/ScaleDown")
+fallingAudio = NodePath("Audio/Whoosh")
+footStep1 = NodePath("Audio/Footstep1")
+footStep2 = NodePath("Audio/Footstep2")
+BGMStart = NodePath("Audio/BGMstart")
+BGMLoop = NodePath("Audio/BGMloop")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -30.5)
@@ -216,8 +233,39 @@ position = Vector2(26, 0)
 position = Vector2(-13, -30)
 shape = SubResource("RectangleShape2D_iscsi")
 
+[node name="Audio" type="Node" parent="."]
+
+[node name="Jump" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("6_7wb4q")
+
+[node name="Land" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("7_caafe")
+
+[node name="ScaleUp" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("8_gn6qy")
+
+[node name="ScaleDown" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("9_fyvf4")
+
+[node name="Whoosh" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("10_btot1")
+
+[node name="Footstep1" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("7_caafe")
+
+[node name="Footstep2" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("11_crs63")
+
+[node name="BGMloop" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("12_itrqd")
+
+[node name="BGMstart" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("13_bnn7k")
+
 [connection signal="value_changed" from="PlayerCamera/UI_Slider" to="." method="OnScaleChange"]
 [connection signal="body_entered" from="LeftDetector" to="." method="OnLeftDetected"]
 [connection signal="body_exited" from="LeftDetector" to="." method="OnLeftExitDetected"]
 [connection signal="body_entered" from="RightDetector" to="." method="OnRightDetected"]
 [connection signal="body_exited" from="RightDetector" to="." method="OnRightExitDetected"]
+[connection signal="finished" from="Audio/BGMloop" to="." method="OnMusicLoopFinished"]
+[connection signal="finished" from="Audio/BGMstart" to="." method="OnIntroMusicFinished"]
