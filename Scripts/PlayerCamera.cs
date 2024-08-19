@@ -14,7 +14,7 @@ public partial class PlayerCamera : Camera2D
 	public override void _Process(double delta)
 	{
 		FrankScale = GetParent<CharacterBody2D>().Scale;
-		Zoom = new Vector2(1/FrankScale.X, 1/FrankScale.Y);
+		Zoom = new Vector2(2/FrankScale.X, 2/FrankScale.Y);
 		
 	}
 }
