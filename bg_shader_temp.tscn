@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://dw3tphy05dh6w"]
+
+[ext_resource type="PackedScene" uid="uid://bbejxo6dudxes" path="res://Scenes/level_1.tscn" id="1_6a0yg"]
+[ext_resource type="Shader" path="res://Shaders/bg_shader.gdshader" id="2_6iy4j"]
+[ext_resource type="Texture2D" uid="uid://dyxhlnv4fqkr3" path="res://Sprites/Prop_RainGrate.png" id="3_kmelj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p3tax"]
+shader = ExtResource("2_6iy4j")
+shader_parameter/add_clouds = true
+shader_parameter/clouds_below = false
+shader_parameter/cloud_scale = 0.25
+shader_parameter/speed = 0.002
+shader_parameter/cloud_dark = 0.5
+shader_parameter/cloud_light = 0.3
+shader_parameter/cloud_cover = 0.2
+shader_parameter/cloud_alpha = 8.0
+shader_parameter/sky_tint = 0.5
+shader_parameter/height_offset = 0.2
+shader_parameter/sky_contribution = 0.5
+
+[node name="BG Shader TEMP" type="Node2D"]
+
+[node name="Level_1" parent="." instance=ExtResource("1_6a0yg")]
+
+[node name="CanvasLayer_BG" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer_BG"]
+material = SubResource("ShaderMaterial_p3tax")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -115.0
+offset_top = -86.0
+offset_right = 114.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer_PostProcess" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer_PostProcess"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PropRainGrate" type="Sprite2D" parent="CanvasLayer_PostProcess"]
+position = Vector2(1937, 62)
+texture = ExtResource("3_kmelj")
