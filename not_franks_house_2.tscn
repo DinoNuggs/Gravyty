@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://domfuecve5j0x"]
+
+[ext_resource type="Texture2D" uid="uid://cvychpg6sx8km" path="res://Sprites/Prop_NotFranksHouse2.png" id="1_f65go"]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+[node name="PropNotFranksHouse2" type="Sprite2D" parent="."]
+position = Vector2(550, -273)
+scale = Vector2(0.95614, 0.95614)
+texture = ExtResource("1_f65go")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(33, -1, 40, -127, 32, -251, 7, -251, 1, -262, 76, -322, 183, -426, 285, -541, 556, -494, 655, -482, 871, -484, 942, -383, 1097, -257, 1033, -251, 1042, -109, 1033, -1)
