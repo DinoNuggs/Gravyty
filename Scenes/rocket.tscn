@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://iujx5gpvjfcx"]
+[gd_scene load_steps=7 format=3 uid="uid://iujx5gpvjfcx"]
 
 [ext_resource type="Script" path="res://Scenes/Rocket.cs" id="1_n8jnv"]
 [ext_resource type="Texture2D" uid="uid://4pg4hw8a42d4" path="res://Sprites/Prop_Rocket.png" id="2_7vc3w"]
+[ext_resource type="AudioStream" uid="uid://bc4niegrgkknp" path="res://Audio/SFX/SFX_Rocket_Launch.mp3" id="3_6xk38"]
 
 [sub_resource type="Animation" id="Animation_y8n2o"]
 length = 0.001
@@ -84,8 +85,9 @@ _data = {
 "launch": SubResource("Animation_tketq")
 }
 
-[node name="Rocket" type="StaticBody2D"]
+[node name="Rocket" type="StaticBody2D" node_paths=PackedStringArray("launchSound")]
 script = ExtResource("1_n8jnv")
+launchSound = NodePath("AudioStreamPlayer")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-16, -224, -58, -109, -75, 0, -76, 122, -56, 224, -80, 272, -88, 352, -40, 312, 0, 344, 64, 296, 120, 344, 112, 256, 64, 208, 71, 94, 61, -37, 35, -133)
@@ -124,3 +126,6 @@ texture = ExtResource("2_7vc3w")
 libraries = {
 "": SubResource("AnimationLibrary_qob7i")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6xk38")

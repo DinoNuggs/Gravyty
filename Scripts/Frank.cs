@@ -33,6 +33,7 @@ public partial class Frank : CharacterBody2D
 	[Export] public AudioStreamPlayer footStep2;
 	[Export] public AudioStreamPlayer BGMStart;
 	[Export] public AudioStreamPlayer BGMLoop;
+	[Export] public float footstepGapTiming = 1; // in seconds
 
 	private RayCast2D headClearanceRay;
 	private AnimatedSprite2D animator;
@@ -43,6 +44,8 @@ public partial class Frank : CharacterBody2D
 	private bool rightBlocked = false;
 	private List<AudioStreamPlayer> footSteps;
 	private int currPlayingFootStep = 1;
+	private float timeSinceLastStep = 0;
+	
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -126,14 +129,18 @@ public partial class Frank : CharacterBody2D
 
 		// Grounded
 		if (IsOnFloor()) {
+			timeSinceLastStep += (float) delta;
 			animator.SpeedScale = 1/scaleModifier;
+			//footStep1.PitchScale = 1/scaleModifier;
+			//footStep2.PitchScale = 1/scaleModifier;
 			if (direction != Vector2.Zero)
 			{
 				animator.Play("walk");
 
-				if(!footStep1.Playing && !footStep2.Playing) {
+				if(!footStep1.Playing && !footStep2.Playing && timeSinceLastStep > footstepGapTiming * scaleModifier) {
 					footSteps[currPlayingFootStep % 2].Play();
 					currPlayingFootStep++;
+					timeSinceLastStep = 0;
 				}
 				
 
@@ -159,6 +166,7 @@ public partial class Frank : CharacterBody2D
 			}
 		} else {
 			// In air, should be harder to change direction
+			timeSinceLastStep = footstepGapTiming * scaleModifier;
 			animator.Play("airborne");
 			if ( Velocity.X < 0 ) {
 				animator.FlipH = true;

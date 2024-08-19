@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bb7dx0vidlif2"]
+[gd_scene load_steps=11 format=3 uid="uid://bb7dx0vidlif2"]
 
 [ext_resource type="Script" path="res://Scripts/PressurePlate.cs" id="1_yfv51"]
 [ext_resource type="Texture2D" uid="uid://bryor8andhvyu" path="res://Sprites/pressureplate.png" id="2_hj0oh"]
+[ext_resource type="AudioStream" uid="uid://bv0fpa41yrmqn" path="res://Audio/SFX/SFX_BTN_Press.wav" id="3_h5psy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_my255"]
-size = Vector2(23, 11)
+size = Vector2(23, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7pkwt"]
 atlas = ExtResource("2_hj0oh")
@@ -70,15 +71,16 @@ _data = {
 "pressed": SubResource("Animation_bdkb6")
 }
 
-[node name="PressurePlate" type="Area2D"]
+[node name="PressurePlate" type="Area2D" node_paths=PackedStringArray("pressedSound")]
 z_index = -1
 position = Vector2(0, -2)
 collision_layer = 11
 collision_mask = 11
 script = ExtResource("1_yfv51")
+pressedSound = NodePath("PressedSound")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -3.5)
+position = Vector2(-0.5, -2)
 shape = SubResource("RectangleShape2D_my255")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -100,6 +102,11 @@ polygon = PackedVector2Array(-24, 1, -12, -4, 10, -4, 24, 1)
 libraries = {
 "": SubResource("AnimationLibrary_4gofo")
 }
+
+[node name="PressedSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_h5psy")
+
+[node name="UnpressedSound" type="AudioStreamPlayer" parent="."]
 
 [connection signal="area_entered" from="." to="." method="OnAreaEntered"]
 [connection signal="area_exited" from="." to="." method="OnAreaExited"]

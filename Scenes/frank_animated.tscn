@@ -181,6 +181,7 @@ footStep1 = NodePath("Audio/Footstep1")
 footStep2 = NodePath("Audio/Footstep2")
 BGMStart = NodePath("Audio/BGMstart")
 BGMLoop = NodePath("Audio/BGMloop")
+footstepGapTiming = 0.4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -30.5)
@@ -258,6 +259,7 @@ stream = ExtResource("11_crs63")
 
 [node name="BGMloop" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("12_itrqd")
+volume_db = -2.346
 
 [node name="BGMstart" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("13_bnn7k")

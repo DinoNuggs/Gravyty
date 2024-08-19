@@ -3,6 +3,7 @@ using System;
 
 public partial class Rocket : StaticBody2D
 {
+	[Export] public AudioStreamPlayer launchSound;
 	private AnimationPlayer animator;
 	private CpuParticles2D innerFire;
 	private CpuParticles2D outerFire;
@@ -23,8 +24,10 @@ public partial class Rocket : StaticBody2D
 	public void OnLaunchSignal() {
 		if( !launched ) {
 			animator.Play("launch");
+			launchSound.Play();
 			innerFire.Emitting = true;
 			outerFire.Emitting = true;
+			launched = true;
 		}
 	}
 }

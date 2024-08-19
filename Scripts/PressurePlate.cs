@@ -5,6 +5,7 @@ public partial class PressurePlate : Area2D
 {
 	[Export] public float weightThreshold = 0;
 	[Export] public bool oneShot = false;
+	[Export] public AudioStreamPlayer pressedSound;
 	[Signal] public delegate void ButtonPressedEventHandler();
 	private bool wasPressed = false;
 	private bool wasReleased = false;
@@ -27,6 +28,7 @@ public partial class PressurePlate : Area2D
 		if(wasPressed && frank.GetWeight() > weightThreshold) {
 			spriteAnimator.Play("pressed");
 			physicsAnimator.Play("pressed");
+			if (!pressedSound.Playing) { pressedSound.Play(); }
 			GD.Print("Emitting");
 			EmitSignal(SignalName.ButtonPressed);
 			wasPressed = false;
@@ -51,7 +53,7 @@ public partial class PressurePlate : Area2D
 		if(oneShot){
 			return;
 		}
-		
+
 		wasReleased = true;
 	}
 
