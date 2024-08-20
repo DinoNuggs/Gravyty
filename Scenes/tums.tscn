@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct6yibv3ghep0"]
+
+[ext_resource type="Script" path="res://Scripts/Tums.cs" id="1_77go0"]
+[ext_resource type="Texture2D" uid="uid://b7b343edcouty" path="res://Sprites/Tums.png" id="2_25d8r"]
+[ext_resource type="PackedScene" uid="uid://ja7wqg3fow65" path="res://Scenes/win_scene.tscn" id="2_qafg7"]
+
+[node name="Tums" type="Area2D"]
+script = ExtResource("1_77go0")
+winScene = ExtResource("2_qafg7")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-35, -53, 41, -49, 56, 0, 46, 49, -31, 48, -44, -1)
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionPolygon2D"]
+texture = ExtResource("2_25d8r")
+
+[connection signal="area_entered" from="." to="." method="OnFrankEntered"]

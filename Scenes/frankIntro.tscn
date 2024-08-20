@@ -5,8 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://ck6jyvr8mxanb" path="res://Scenes/level_1.tscn" id="3_cccpn"]
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 800.0
+offset_bottom = 600.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 stream = ExtResource("1_3marg")
 volume_db = 16.82
 autoplay = true

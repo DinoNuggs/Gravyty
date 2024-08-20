@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://ck6jyvr8mxanb"]
+[gd_scene load_steps=28 format=4 uid="uid://ck6jyvr8mxanb"]
 
 [ext_resource type="Texture2D" uid="uid://c8nquvbim5wlt" path="res://Sprites/enviromenttiles.png" id="1_1dtse"]
 [ext_resource type="Texture2D" uid="uid://chohu8bbgqrbs" path="res://Sprites/sewerTiles.png" id="2_ryl67"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://5eujax1yoorm" path="res://Sprites/Environment_Sign_No-Jumpy.png" id="18_xl4tt"]
 [ext_resource type="PackedScene" uid="uid://pctgcssc6p31" path="res://Scenes/Props/FireHydrant.tscn" id="19_5aj7f"]
 [ext_resource type="Texture2D" uid="uid://c5c1kh3mbeck1" path="res://Sprites/Environment_Sign_No-Diving.png" id="19_6txya"]
+[ext_resource type="PackedScene" uid="uid://ct6yibv3ghep0" path="res://Scenes/tums.tscn" id="21_187qy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lcn1d"]
 texture = ExtResource("1_1dtse")
@@ -215,6 +216,10 @@ texture = ExtResource("18_xl4tt")
 position = Vector2(5075, -26)
 scale = Vector2(0.176666, 0.176666)
 texture = ExtResource("19_6txya")
+
+[node name="Tums" parent="Node2D-Illustrations" instance=ExtResource("21_187qy")]
+position = Vector2(8688, -23)
+scale = Vector2(0.575, 0.575)
 
 [node name="Hydrant" parent="." instance=ExtResource("19_5aj7f")]
 position = Vector2(593, -1)
