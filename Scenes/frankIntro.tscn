@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5ei7budtj8ov"]
+
+[ext_resource type="VideoStream" path="res://frank.ogv" id="1_3marg"]
+[ext_resource type="Script" path="res://Scenes/FrankIntro.cs" id="2_jaw12"]
+[ext_resource type="PackedScene" uid="uid://ck6jyvr8mxanb" path="res://Scenes/level_1.tscn" id="3_cccpn"]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("1_3marg")
+volume_db = 16.82
+autoplay = true
+script = ExtResource("2_jaw12")
+mainScene = ExtResource("3_cccpn")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 512.0
+offset_right = 776.0
+offset_bottom = 567.0
+text = "SKIP CUTSCENE"
+
+[connection signal="finished" from="." to="." method="OnFinishedOrSkip"]
+[connection signal="button_down" from="Button" to="." method="OnFinishedOrSkip"]
