@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://c6jwwiotd6oei" path="res://Audio/SFX/SFX_SCALEDOWN.wav" id="9_fyvf4"]
 [ext_resource type="AudioStream" uid="uid://dnjl64ml8vki" path="res://Audio/SFX/SFX_Jump-Whoosh.wav" id="10_btot1"]
 [ext_resource type="AudioStream" uid="uid://dxxaqj6pubyap" path="res://Audio/SFX/SFX_Footstep-2.wav" id="11_crs63"]
-[ext_resource type="AudioStream" uid="uid://capu2v1tljldl" path="res://Audio/Tunes/frank.wav" id="12_itrqd"]
+[ext_resource type="AudioStream" uid="uid://mvuv6v1wo36e" path="res://Audio/Tunes/BGM-MAIN.wav" id="12_hnm32"]
 [ext_resource type="AudioStream" uid="uid://bvnwdq6vwa07c" path="res://Audio/Tunes/BGM-START.wav" id="13_bnn7k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t4wbw"]
@@ -258,7 +258,7 @@ stream = ExtResource("7_caafe")
 stream = ExtResource("11_crs63")
 
 [node name="BGMloop" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource("12_itrqd")
+stream = ExtResource("12_hnm32")
 volume_db = -2.346
 
 [node name="BGMstart" type="AudioStreamPlayer" parent="Audio"]
