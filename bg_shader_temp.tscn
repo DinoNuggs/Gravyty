@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dw3tphy05dh6w"]
+[gd_scene load_steps=7 format=3 uid="uid://dw3tphy05dh6w"]
 
 [ext_resource type="PackedScene" uid="uid://bbejxo6dudxes" path="res://Scenes/level_1.tscn" id="1_6a0yg"]
 [ext_resource type="Shader" path="res://Shaders/bg_shader.gdshader" id="2_6iy4j"]
 [ext_resource type="Texture2D" uid="uid://dyxhlnv4fqkr3" path="res://Sprites/Prop_RainGrate.png" id="3_kmelj"]
+[ext_resource type="Texture2D" uid="uid://c5c1kh3mbeck1" path="res://Sprites/Environment_Sign_No-Diving.png" id="4_isjq5"]
+[ext_resource type="Texture2D" uid="uid://5eujax1yoorm" path="res://Sprites/Environment_Sign_No-Jumpy.png" id="5_ycuqa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p3tax"]
 shader = ExtResource("2_6iy4j")
@@ -24,6 +26,7 @@ shader_parameter/sky_contribution = 0.5
 
 [node name="CanvasLayer_BG" type="CanvasLayer" parent="."]
 layer = -1
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer_BG"]
 material = SubResource("ShaderMaterial_p3tax")
@@ -38,6 +41,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CanvasLayer_PostProcess" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer_PostProcess"]
 anchors_preset = 15
@@ -49,3 +53,17 @@ grow_vertical = 2
 [node name="PropRainGrate" type="Sprite2D" parent="CanvasLayer_PostProcess"]
 position = Vector2(1937, 62)
 texture = ExtResource("3_kmelj")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(800, 0)
+repeat_times = 16
+
+[node name="EnvironmentSignNo-diving" type="Sprite2D" parent="."]
+position = Vector2(5071, -38)
+scale = Vector2(0.246667, 0.246667)
+texture = ExtResource("4_isjq5")
+
+[node name="EnvironmentSignNo-jumpy" type="Sprite2D" parent="."]
+position = Vector2(6208, -6)
+scale = Vector2(0.255001, 0.255001)
+texture = ExtResource("5_ycuqa")

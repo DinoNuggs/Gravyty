@@ -24,6 +24,10 @@ window/size/viewport_height=600
 
 project/assembly_name="Gravitas"
 
+[editor]
+
+movie_writer/movie_file="S:/Godot/Test_Play.avi"
+
 [input]
 
 scale_up={
@@ -56,3 +60,4 @@ move_right={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.709804, 0.768627, 0.85098, 1)
